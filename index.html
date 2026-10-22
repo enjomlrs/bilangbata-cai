@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BilangBata &#8211; Count &amp; Feed the Puppy!</title>
+  <meta name="description" content="BilangBata is a fun, interactive counting game for toddlers. Drag mangoes from the tree and feed Bantay the puppy!" />
+
+  <!-- Google Fonts: Fredoka One (titles) + Nunito (body text) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;900&display=swap" rel="stylesheet" />
+
+  <!-- Game stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- SCREEN 1: LANDING PAGE -->
+  <section id="screen-landing" class="screen" aria-label="Landing Page">
+
+    <!-- Decorative blobs -->
+    <div class="blob-extra" style="width:140px;height:140px;background:#f9c8e0;top:60px;left:80px;"></div>
+    <div class="blob-extra" style="width:90px;height:90px;background:#d4b8f8;bottom:80px;left:60px;"></div>
+    <div class="blob-extra" style="width:70px;height:70px;background:#a8d8f8;top:90px;right:120px;"></div>
+
+    <!-- Title -->
+    <h1 id="landing-title">BilangBata</h1>
+
+    <!-- Subtitle -->
+    <p id="landing-subtitle">&#129389; Count &amp; Feed the Puppy! &#128054;</p>
+
+    <!-- Landing puppy image. ASSET: assets/puppy.jpg -->
+    <div id="landing-puppy-wrapper">
+      <img
+        id="img-landing-puppy"
+        src="assets/puppy_mid.jpg"
+        alt="A cute cartoon puppy sitting and smiling"
+        draggable="false"
+      />
+    </div>
+
+    <!-- PLAY button -->
+    <button id="btn-play" aria-label="Start the game">
+      <span class="play-icon">&#9654;</span> PLAY
+    </button>
+
+  </section>
+
+
+  <!-- SCREEN 2: GAME ENVIRONMENT -->
+  <section id="screen-game" class="screen hidden" aria-label="Game Screen">
+
+    <!--
+      ASSET: Rural province background. assets/bg_province.jpg
+    -->
+    <img
+      id="img-game-bg"
+      src="assets/bg_province.jpg"
+      alt="Green countryside with a river, a dirt path, palm trees and mountains"
+      draggable="false"
+    />
+
+    <!--
+      Bahay Kubo (decoration).
+      ASSET: assets/bahay_kubo.png  (transparent PNG, no white box)
+    -->
+    <img
+      id="img-bahay-kubo"
+      src="assets/bahay_kubo.png"
+      alt="A Bahay Kubo, a traditional Filipino nipa hut on bamboo stilts"
+      draggable="false"
+    />
+
+    <!-- Module picker - top left. Click to jump to any module. -->
+    <div id="module-picker">
+      <button id="btn-module" aria-haspopup="true" aria-expanded="false" title="Choose a module">
+        <span id="module-label">Module 1</span> <span class="caret">&#9662;</span>
+      </button>
+      <ul id="module-menu" role="menu" hidden></ul>
+    </div>
+
+    <!-- Score badge - under the module picker -->
+    <div id="score-badge" role="status" aria-live="polite">
+      &#129389; <span id="score-display">0 / 0</span>
+    </div>
+
+    <!-- Big banner shown for a moment when a module starts -->
+    <div id="module-banner" aria-live="polite">
+      <span id="module-banner-title"></span>
+      <span id="module-banner-sub"></span>
+    </div>
+
+    <!-- Short feedback messages (still hungry / too many) -->
+    <div id="feedback-toast" role="alert"></div>
+
+    <!-- Toolbar - top right -->
+    <div id="toolbar">
+      <button class="toolbar-btn" id="btn-music"    title="Toggle Music" aria-label="Toggle Music">&#127925;</button>
+      <button class="toolbar-btn" id="btn-settings" title="Settings"     aria-label="Settings">&#9881;&#65039;</button>
+    </div>
+
+    <!--
+      Vendor / Tree.
+      Module 1: assets/mango_tree.png (mango tree)
+      Module 2: assets/sorbetes_cart.jpg (sorbetes ice cream cart)
+      Module 3: assets/buko_stall.jpg (buko juice stall)
+      Draggable food items are injected INTO this wrapper at runtime by
+      game.js, so they sit on the vendor.
+    -->
+    <div id="tree-wrapper" aria-label="Vendor">
+      <img
+        id="img-mango-tree"
+        src="assets/mango_tree.png"
+        alt="Food vendor"
+        draggable="false"
+      />
+    </div>
+
+    <!--
+      Non-Edible Items.
+      ASSET: tire  -> assets/tire.jpg
+      ASSET: rock  -> assets/rock.jpg
+      ASSET: wood  -> assets/wood.jpg
+    -->
+    <img id="img-tire" class="non-edible" src="assets/tire.jpg"
+         alt="A cartoon tire" draggable="false"
+         data-type="non-edible" data-name="tire" />
+
+    <img id="img-rock" class="non-edible" src="assets/rock.jpg"
+         alt="A cartoon rock" draggable="false"
+         data-type="non-edible" data-name="rock" />
+
+    <img id="img-wood" class="non-edible" src="assets/wood.jpg"
+         alt="Cartoon wooden logs" draggable="false"
+         data-type="non-edible" data-name="wood" />
+
+    <!--
+      Bantay the Dog (drop zone).
+      Dog state images are swapped by game.js via ASSET_PATHS in game.js:
+        dog_thin     -> assets/puppy_sad.jpg       (0 items fed)
+        dog_medium   -> assets/puppy_mid.jpg        (1-49% of target)
+        dog_happy    -> assets/puppy_happy 1.jpg    (50-99% of target)
+        dog_muscular -> assets/puppy_muscular.jpg   (100% of target – fully fed)
+        dog_fat      -> assets/puppy_fat.jpg        (overfed > target)
+        dog_sick     -> assets/puppy_sick.jpg       (wrong item dropped)
+    -->
+    <div id="bantay-wrapper" role="region" aria-label="Bantay - drop zone">
+
+      <!-- Speech bubble above the dog -->
+      <div id="speech-bubble" aria-live="polite">
+        <span id="bubble-text">
+          Can you feed me <strong id="bubble-target">?</strong> mangoes?
+        </span>
+        <span id="bubble-count">0 / 0</span>
+      </div>
+
+      <span id="bantay-name">Bantay</span>
+
+      <img
+        id="img-bantay"
+        src="assets/puppy_sad.jpg"
+        alt="Bantay the dog"
+        draggable="false"
+      />
+
+      <!-- Food items Bantay has eaten. Tap one to take it back. -->
+      <div id="fed-tray" aria-label="Food fed to Bantay">
+        <span id="fed-hint">Tap to take one back</span>
+        <div id="fed-list"></div>
+      </div>
+
+      <!-- Student presses this when they think Bantay has the right amount -->
+      <button id="btn-done" aria-label="Done feeding Bantay">Done Feeding &#9989;</button>
+    </div>
+
+    <!-- Ghost image that follows the cursor during drag -->
+    <img id="drag-ghost" src="" alt="" draggable="false" />
+
+    <!-- Red flash overlay for wrong-drop feedback -->
+    <div id="wrong-flash"></div>
+
+    <!-- Win Overlay -->
+    <div id="win-overlay" role="dialog" aria-modal="true" aria-label="You Win!">
+      <div id="win-card">
+        <h2 id="win-title">&#127881; Yay! Great Job! &#127881;</h2>
+        <p id="win-text">Bantay is so happy and full! &#128054;&#10084;&#65039;</p>
+        <div id="win-buttons">
+          <button id="btn-play-again">&#8635; Play Again</button>
+          <button id="btn-next-module">Next Module &#9654;</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Game logic loaded after DOM is ready -->
+  <script src="game.js"></script>
+
+</body>
+</html>

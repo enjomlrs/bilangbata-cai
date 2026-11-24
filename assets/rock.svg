@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="rg" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#BDBDBD"/>
+      <stop offset="60%" stop-color="#9E9E9E"/>
+      <stop offset="100%" stop-color="#757575"/>
+    </radialGradient>
+  </defs>
+  <!-- Main rock body -->
+  <path d="M30,160 C10,120 15,70 50,45 C70,30 100,20 140,35 C175,50 190,90 185,130 C180,165 145,185 110,190 C75,195 45,185 30,160 Z" fill="url(#rg)" stroke="#616161" stroke-width="2"/>
+  <!-- Highlight -->
+  <path d="M60,70 C70,50 110,40 140,55 C155,65 160,85 150,95 C130,80 90,65 60,70 Z" fill="#CFD8DC" opacity="0.5"/>
+  <!-- Surface detail -->
+  <circle cx="80" cy="100" r="5" fill="#757575" opacity="0.4"/>
+  <circle cx="130" cy="120" r="7" fill="#757575" opacity="0.3"/>
+  <circle cx="60" cy="140" r="4" fill="#757575" opacity="0.4"/>
+  <path d="M70,130 C90,125 110,128 120,135" stroke="#757575" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round"/>
+</svg>

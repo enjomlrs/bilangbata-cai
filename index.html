@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BilangBata &#8211; Count &amp; Feed the Puppy!</title>
+  <meta name="description" content="BilangBata is a fun, interactive counting game for toddlers. Drag mangoes from the tree and feed Bantay the puppy!" />
+
+  <!-- Google Fonts: Fredoka One (titles) + Nunito (body text) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;900&display=swap" rel="stylesheet" />
+
+  <!-- Game stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- SCREEN 1: LANDING PAGE -->
+  <section id="screen-landing" class="screen" aria-label="Landing Page">
+
+    <!-- V-Shaped 3-Wedge Panoramic Backdrop -->
+    <div class="landing-wedge wedge-luneta" aria-hidden="true">
+      <img id="img-landing-luneta" class="landing-wedge-bg" src="assets/bg_luneta_novendor.jpg" onerror="this.onerror=null;this.dataset.fb='1';this.src='assets/bg_luneta.jpg';" alt="" draggable="false" />
+    </div>
+    <div class="landing-wedge wedge-palayan" aria-hidden="true">
+      <img class="landing-wedge-bg" src="assets/bg_province.jpg" alt="" draggable="false" />
+      <img id="img-landing-tree" src="assets/mango_tree.png" alt="" draggable="false" />
+    </div>
+    <div class="landing-wedge wedge-boracay" aria-hidden="true">
+      <img id="img-landing-boracay" class="landing-wedge-bg" src="assets/bg_boracay_novendor.jpg" onerror="this.onerror=null;this.dataset.fb='1';this.src='assets/bg_boracay.jpg';" alt="" draggable="false" />
+    </div>
+
+    <!-- Crisp V-Divider Lines & Center Readability Scrim -->
+    <svg id="landing-v-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M 0 0 L 50 100 L 100 0" fill="none" stroke="#2b1a10" stroke-width="1.5" stroke-linejoin="round" />
+      <path d="M 0 0 L 50 100 L 100 0" fill="none" stroke="#ffffff" stroke-width="0.9" stroke-linejoin="round" />
+    </svg>
+    <div id="landing-bg-overlay" aria-hidden="true"></div>
+
+    <!-- Teacher Dashboard shortcut (PIN protected) -->
+    <button id="btn-teacher-landing" class="teacher-link" type="button" title="Teacher Dashboard">📊 Teacher</button>
+
+    <!-- Center Zone: Title, Subtitle & PLAY Button in Top-Center V -->
+    <div id="landing-center">
+      <h1 id="landing-title">BilangBata</h1>
+      <p id="landing-subtitle">&#129389; Count &amp; Feed the Puppy! &#128054;</p>
+      <button id="btn-play" aria-label="Start the game">
+        <span class="play-icon">&#9654;</span> PLAY
+      </button>
+    </div>
+
+    <!-- Bottom-Left: Two Friendly Cartoon Vendors Waving "Hi!" -->
+    <div id="landing-vendors-wave" role="button" tabindex="0" aria-label="Tap the Sorbetes and Buko Juice vendors to say hi!">
+      <!-- 1. Sorbetes Vendor (Manong in Salakot Hat & Yellow Shirt) -->
+      <svg id="vendor-sorbetes" class="vendor-svg" viewBox="0 0 180 230" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Back collar/neck shadow & ears -->
+        <ellipse cx="47" cy="116" rx="9" ry="12" fill="#d99364" stroke="#2b1a10" stroke-width="3.5" />
+        <ellipse cx="121" cy="116" rx="9" ry="12" fill="#d99364" stroke="#2b1a10" stroke-width="3.5" />
+        <!-- Left arm down by waist -->
+        <path d="M 46 154 C 30 168 28 202 36 232 L 54 232 C 50 205 50 180 56 164 Z" fill="#d99364" stroke="#2b1a10" stroke-width="3.5" stroke-linejoin="round" />
+        <!-- Waving Right Arm -->
+        <g class="vendor-wave-arm" style="transform-origin: 120px 158px;">
+          <path d="M 118 156 C 134 150 144 128 148 106 C 150 96 162 96 161 108 C 160 116 155 124 152 132 C 148 154 136 172 120 174 Z" fill="#d99364" stroke="#2b1a10" stroke-width="3.5" stroke-linejoin="round" />
+          <!-- Open waving hand & thumb -->
+          <path d="M 142 106 C 137 97 141 85 148 85 C 151 85 152 91 151 94 C 154 84 160 85 160 93 C 163 86 169 89 166 98 C 169 94 173 98 168 107 C 164 114 158 119 149 116 Z" fill="#d99364" stroke="#2b1a10" stroke-width="3.2" stroke-linejoin="round" />
+          <!-- Palm smile crease -->
+          <path d="M 149 107 Q 155 104 159 107" fill="none" stroke="#b36d43" stroke-width="2" stroke-linecap="round" />
+          <!-- Wave motion lines -->
+          <path d="M 134 80 Q 130 71 135 64" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+          <path d="M 171 84 Q 177 77 175 68" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+        </g>
+        <!-- Yellow T-Shirt Torso & Sleeves -->
+        <path d="M 38 232 L 42 162 C 44 148 56 142 70 140 L 98 140 C 114 142 124 148 128 162 L 130 232 Z" fill="#ffd62e" stroke="#2b1a10" stroke-width="3.5" stroke-linejoin="round" />
+        <!-- Left sleeve & Right shoulder sleeve -->
+        <path d="M 52 145 L 33 166 L 51 178 L 57 160 Z" fill="#ffd62e" stroke="#2b1a10" stroke-width="3.5" stroke-linejoin="round" />
+        <path d="M 114 144 L 134 154 L 126 172 L 112 162 Z" fill="#ffd62e" stroke="#2b1a10" stroke-width="3.5" stroke-linejoin="round" />
+        <!-- Shirt collar & cel fold -->
+        <path d="M 67 140 Q 84 154 101 140" fill="none" stroke="#2b1a10" stroke-width="3.5" stroke-linecap="round" />
+        <path d="M 64 180 Q 84 188 104 180" fill="none" stroke="#d9a400" stroke-width="2.5" stroke-linecap="round" />
+        <!-- Neck -->
+        <path d="M 73 128 L 73 144 Q 84 152 95 144 L 95 128 Z" fill="#c98052" stroke="#2b1a10" stroke-width="3.5" stroke-linejoin="round" />
+        <!-- Face -->
+        <ellipse cx="84" cy="108" rx="34" ry="33" fill="#d99364" stroke="#2b1a10" stroke-width="3.5" />
+        <!-- Hair bangs peeking under salakot -->
+        <path d="M 50 96 C 56 80 72 78 84 82 C 96 78 112 80 118 96 C 112 91 102 90 92 92 C 80 90 66 90 50 96 Z" fill="#2b1a10" stroke="#2b1a10" stroke-width="2" stroke-linejoin="round" />
+        <!-- Eyebrows -->
+        <path d="M 64 98 Q 70 94 76 98" fill="none" stroke="#2b1a10" stroke-width="3.2" stroke-linecap="round" />
+        <path d="M 92 98 Q 98 94 104 98" fill="none" stroke="#2b1a10" stroke-width="3.2" stroke-linecap="round" />
+        <!-- Eyes & Catchlights -->
+        <ellipse cx="70" cy="107" rx="4.5" ry="5.5" fill="#2b1a10" />
+        <circle cx="71.8" cy="105" r="1.7" fill="#fff" />
+        <ellipse cx="98" cy="107" rx="4.5" ry="5.5" fill="#2b1a10" />
+        <circle cx="99.8" cy="105" r="1.7" fill="#fff" />
+        <!-- Rosy cheeks & cartoon nose -->
+        <ellipse cx="60" cy="116" rx="5.5" ry="3.2" fill="#ef8a6c" opacity="0.55" />
+        <ellipse cx="108" cy="116" rx="5.5" ry="3.2" fill="#ef8a6c" opacity="0.55" />
+        <path d="M 82 110 Q 87 115 82 117" fill="none" stroke="#9e5933" stroke-width="2.6" stroke-linecap="round" />
+        <!-- Warm Smile -->
+        <path d="M 69 121 Q 84 134 99 121 Z" fill="#7a1c1c" stroke="#2b1a10" stroke-width="3" stroke-linejoin="round" />
+        <path d="M 73 122 Q 84 125 95 122 L 93 125 Q 84 127 75 125 Z" fill="#fff" />
+        <ellipse cx="84" cy="128" rx="7" ry="3" fill="#ff7c7c" />
+        <!-- Woven Filipino Salakot Hat -->
+        <ellipse cx="84" cy="83" rx="58" ry="15" fill="#c98f32" stroke="#2b1a10" stroke-width="3.5" />
+        <path d="M 28 83 C 42 50 66 36 84 36 C 102 36 126 50 140 83 Q 84 95 28 83 Z" fill="#e5b45c" stroke="#2b1a10" stroke-width="3.5" stroke-linejoin="round" />
+        <!-- Salakot weave lines & top spike/finial -->
+        <path d="M 84 36 L 84 89 M 66 44 L 54 86 M 102 44 L 114 86 M 47 64 Q 84 74 121 64" fill="none" stroke="#b37723" stroke-width="2.2" stroke-linecap="round" />
+        <ellipse cx="84" cy="34" rx="8" ry="5" fill="#9c6218" stroke="#2b1a10" stroke-width="3" />
+      </svg>
+
+      <!-- 2. Buko Juice Vendor (Colorful Tropical Shirt & Tan Apron) -->
+      <svg id="vendor-buko" class="vendor-svg" viewBox="0 0 180 230" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Ears -->
+        <ellipse cx="48" cy="112" rx="9" ry="12" fill="#d38c5e" stroke="#2b1a10" stroke-width="3.5" />
+        <ellipse cx="122" cy="112" rx="9" ry="12" fill="#d38c5e" stroke="#2b1a10" stroke-width="3.5" />
+        <!-- Left arm relaxed -->
+        <path d="M 46 154 C 31 170 29 204 37 232 L 55 232 C 51 205 51 180 57 164 Z" fill="#d38c5e" stroke="#2b1a10" stroke-width="3.5" stroke-linejoin="round" />
+        <!-- Staggered Waving Right Arm -->
+        <g class="vendor-wave-arm delayed" style="transform-origin: 120px 158px;">
+          <path d="M 118 156 C 135 148 145 126 149 104 C 151 94 163 94 162 106 C 161 114 156 122 153 130 C 149 152 137 170 121 172 Z" fill="#d38c5e" stroke="#2b1a10" stroke-width="3.5" stroke-linejoin="round" />
+          <path d="M 143 104 C 138 95 142 83 149 83 C 152 83 153 89 152 92 C 155 82 161 83 161 91 C 164 84 170 87 167 96 C 170 92 174 96 169 105 C 165 112 159 117 150 114 Z" fill="#d38c5e" stroke="#2b1a10" stroke-width="3.2" stroke-linejoin="round" />
+          <path d="M 150 105 Q 156 102 160 105" fill="none" stroke="#aa653c" stroke-width="2" stroke-linecap="round" />
+          <path d="M 135 78 Q 131 69 136 62" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+          <path d="M 172 82 Q 178 75 176 66" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+        </g>
+        <!-- Colorful Tropical Floral Shirt -->
+        <path d="M 38 232 L 42 160 C 44 146 56 140 70 138 L 99 138 C 115 140 125 146 129 160 L 131 232 Z" fill="#32c5bd" stroke="#2b1a10" stroke-width="3.5" stroke-linejoin="round" />
+        <!-- Floral Shirt Sleeves -->
+        <path d="M 52 143 L 33 165 L 51 177 L 57 158 Z" fill="#32c5bd" stroke="#2b1a10" stroke-width="3.5" stroke-linejoin="round" />
+        <path d="M 115 142 L 135 152 L 127 170 L 113 160 Z" fill="#32c5bd" stroke="#2b1a10" stroke-width="3.5" stroke-linejoin="round" />
+        <!-- Tropical Hibiscus & Leaf Motifs -->
+        <circle cx="54" cy="176" r="7" fill="#ff6670" />
+        <circle cx="54" cy="176" r="2.6" fill="#ffd447" />
+        <circle cx="115" cy="176" r="6.5" fill="#ffd447" />
+        <circle cx="115" cy="176" r="2.4" fill="#ff6670" />
+        <ellipse cx="44" cy="160" rx="5.5" ry="3" transform="rotate(-30 44 160)" fill="#70d157" />
+        <ellipse cx="123" cy="156" rx="5.5" ry="3" transform="rotate(28 123 156)" fill="#70d157" />
+        <!-- Tan Canvas Apron Over Shirt -->
+        <path d="M 60 156 L 109 156 L 114 232 L 55 232 Z" fill="#f0d5a8" stroke="#2b1a10" stroke-width="3.2" stroke-linejoin="round" />
+        <path d="M 62 156 L 68 139 L 76 140 L 70 157 Z" fill="#e0be89" stroke="#2b1a10" stroke-width="2.8" stroke-linejoin="round" />
+        <path d="M 107 156 L 101 139 L 93 140 L 99 157 Z" fill="#e0be89" stroke="#2b1a10" stroke-width="2.8" stroke-linejoin="round" />
+        <rect x="72" y="190" width="25" height="22" rx="4" fill="#e0be89" stroke="#2b1a10" stroke-width="2.5" />
+        <!-- Neck -->
+        <path d="M 74 126 L 74 142 Q 85 150 96 142 L 96 126 Z" fill="#bf7649" stroke="#2b1a10" stroke-width="3.5" stroke-linejoin="round" />
+        <!-- Face -->
+        <ellipse cx="85" cy="104" rx="34" ry="33" fill="#d38c5e" stroke="#2b1a10" stroke-width="3.5" />
+        <!-- Curly Textured Dark Hair -->
+        <path d="M 48 99 C 45 77 58 60 76 58 C 86 55 98 58 107 62 C 120 68 124 84 122 99 C 116 90 109 86 102 88 C 94 84 85 84 77 88 C 67 86 56 90 48 99 Z" fill="#2b1a10" stroke="#2b1a10" stroke-width="3" stroke-linejoin="round" />
+        <path d="M 64 70 Q 72 64 81 68 M 91 68 Q 100 65 107 72" fill="none" stroke="#4f3628" stroke-width="2.5" stroke-linecap="round" />
+        <!-- Eyebrows -->
+        <path d="M 65 96 Q 71 91 77 96" fill="none" stroke="#2b1a10" stroke-width="3.2" stroke-linecap="round" />
+        <path d="M 93 96 Q 99 91 105 96" fill="none" stroke="#2b1a10" stroke-width="3.2" stroke-linecap="round" />
+        <!-- Eyes & Catchlights -->
+        <ellipse cx="71" cy="105" rx="4.5" ry="5.5" fill="#2b1a10" />
+        <circle cx="72.8" cy="103" r="1.7" fill="#fff" />
+        <ellipse cx="99" cy="105" rx="4.5" ry="5.5" fill="#2b1a10" />
+        <circle cx="100.8" cy="103" r="1.7" fill="#fff" />
+        <!-- Rosy cheeks & cartoon nose -->
+        <ellipse cx="61" cy="114" rx="5.5" ry="3.2" fill="#ee8465" opacity="0.55" />
+        <ellipse cx="109" cy="114" rx="5.5" ry="3.2" fill="#ee8465" opacity="0.55" />
+        <path d="M 83 108 Q 88 113 83 115" fill="none" stroke="#99522e" stroke-width="2.6" stroke-linecap="round" />
+        <!-- Big Cheerful Smile -->
+        <path d="M 70 119 Q 85 132 100 119 Z" fill="#7a1c1c" stroke="#2b1a10" stroke-width="3" stroke-linejoin="round" />
+        <path d="M 74 120 Q 85 123 96 120 L 94 123 Q 85 125 76 123 Z" fill="#fff" />
+        <ellipse cx="85" cy="126" rx="7" ry="3" fill="#ff7c7c" />
+      </svg>
+    </div>
+
+    <!-- Bottom-Right: Happy Bantay Entrance -->
+    <div id="landing-puppy-wrapper" role="button" tabindex="0" aria-label="Tap Bantay to say hi!">
+      <img
+        id="img-landing-puppy"
+        src="assets/puppy_happy 1.jpg"
+        alt="Happy Bantay puppy wagging his tail"
+        draggable="false"
+      />
+    </div>
+
+  </section>
+
+
+  <!-- SCREEN 2: "WHAT'S YOUR NAME?" – Bantay asks every student before playing -->
+  <section id="screen-name" class="screen hidden" aria-label="Enter your name">
+
+    <button id="btn-name-home" class="name-top-btn home" type="button" title="Back to Home" aria-label="Back to Home">🏠 Home</button>
+    <button id="btn-teacher-name" class="teacher-link" type="button" title="Teacher Dashboard" aria-label="Teacher Dashboard">📊 Teacher</button>
+
+    <div class="blob-extra" style="width:120px;height:120px;background:#ffd36b;top:40px;left:60px;"></div>
+    <div class="blob-extra" style="width:90px;height:90px;background:#a8d8f8;bottom:50px;right:80px;"></div>
+
+    <div id="name-card">
+      <div id="name-bantay">
+        <div id="name-bubble">Hi! I'm <b>Bantay</b>! 🐶<br />What's your name?</div>
+        <img id="img-name-bantay" src="assets/puppy_happy 1.jpg"
+             alt="Bantay the puppy asking for your name" draggable="false" />
+      </div>
+
+      <div id="name-right">
+        <form id="name-form" autocomplete="off">
+          <input id="name-input" type="text" maxlength="24" enterkeyhint="go"
+                 placeholder="Type your name" aria-label="Your name" />
+          <span id="name-error" role="alert"></span>
+          <button id="btn-name-go" type="submit">Let's Play! &#9654;</button>
+          <p id="name-module"></p>
+        </form>
+
+        <!-- Students who already entered their name: tap instead of typing -->
+        <div id="name-chips-wrap" hidden>
+          <p>Played before? Tap your name:</p>
+          <div id="name-chips"></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- SCREEN 3: GAME ENVIRONMENT -->
+  <section id="screen-game" class="screen hidden" aria-label="Game Screen">
+
+    <!--
+      ASSET: Rural province background. assets/bg_province.jpg
+    -->
+    <img
+      id="img-game-bg"
+      src="assets/bg_province.jpg"
+      alt="Green countryside with a river, a dirt path, palm trees and mountains"
+      draggable="false"
+    />
+
+    <!--
+      Bahay Kubo (decoration).
+      ASSET: assets/bahay_kubo.png  (transparent PNG, no white box)
+    -->
+    <img
+      id="img-bahay-kubo"
+      src="assets/bahay_kubo.png"
+      alt="A Bahay Kubo, a traditional Filipino nipa hut on bamboo stilts"
+      draggable="false"
+    />
+
+    <!-- Active stage badge - top left (read-only; teacher switches modules in Teacher Dashboard) -->
+    <div id="module-badge" aria-live="polite">
+      📍 <span id="module-label">Module 1: Palayan (1–5)</span>
+    </div>
+
+    <!-- Score badge - under the module picker -->
+    <div id="score-badge" role="status" aria-live="polite">
+      <span id="score-emoji">&#129389;</span> <span id="score-display">0 / 0</span>
+    </div>
+
+    <!-- Student name tag - under the score. Tap to switch to another student. -->
+    <button id="student-chip" type="button" title="Switch student">
+      👤 <span id="student-chip-name">Student</span> <span class="chip-edit">✎</span>
+    </button>
+
+    <!-- Big banner shown for a moment when a module starts -->
+    <div id="module-banner" aria-live="polite">
+      <span id="module-banner-title"></span>
+      <span id="module-banner-sub"></span>
+    </div>
+
+    <!-- Short feedback messages (still hungry / too many) -->
+    <div id="feedback-toast" role="alert"></div>
+
+    <!-- Toolbar - top right -->
+    <div id="toolbar">
+      <button class="toolbar-btn" id="btn-music"    title="Toggle Music" aria-label="Toggle Music">&#127925;</button>
+      <button class="toolbar-btn" id="btn-settings" title="Settings"     aria-label="Settings">&#9881;&#65039;</button>
+    </div>
+
+    <!--
+      Vendor / Tree.
+      Module 1: assets/mango_tree.png (mango tree)
+      Module 2: assets/sorbetes_cart.jpg (sorbetes ice cream cart)
+      Module 3: assets/buko_stall.jpg (buko juice stall)
+      Draggable food items are injected INTO this wrapper at runtime by
+      game.js, so they sit on the vendor.
+    -->
+    <div id="tree-wrapper" aria-label="Vendor">
+      <img
+        id="img-mango-tree"
+        src="assets/mango_tree.png"
+        alt="Food vendor"
+        draggable="false"
+      />
+    </div>
+
+    <!-- Module 2: Cartoon-outlined Luneta Park foreground details (stone planter + pigeons + paving) -->
+    <div id="luneta-decor" class="module-hidden" aria-hidden="true">
+      <svg class="luneta-paving" viewBox="0 0 1200 240" preserveAspectRatio="none">
+        <line x1="0" y1="60"  x2="1200" y2="60"  stroke="#9c8c79" stroke-width="2" opacity="0.28" />
+        <line x1="0" y1="135" x2="1200" y2="135" stroke="#9c8c79" stroke-width="2.5" opacity="0.32" />
+        <line x1="0" y1="205" x2="1200" y2="205" stroke="#8e7e6c" stroke-width="2.5" opacity="0.28" />
+        <line x1="220" y1="60" x2="170" y2="240" stroke="#9c8c79" stroke-width="2" opacity="0.25" />
+        <line x1="480" y1="60" x2="460" y2="240" stroke="#9c8c79" stroke-width="2" opacity="0.25" />
+        <line x1="740" y1="60" x2="770" y2="240" stroke="#9c8c79" stroke-width="2" opacity="0.25" />
+        <line x1="990" y1="60" x2="1050" y2="240" stroke="#9c8c79" stroke-width="2" opacity="0.25" />
+      </svg>
+
+      <!-- Bottom-left stone planter box with ornamental green shrubs & yellow/red flowers -->
+      <svg class="luneta-planter" viewBox="0 0 260 155" aria-hidden="true">
+        <!-- Ground shadow -->
+        <ellipse cx="130" cy="144" rx="116" ry="9" fill="rgba(0,0,0,0.18)" />
+        <!-- Green ornamental shrubs -->
+        <circle cx="58"  cy="74" r="30" fill="#499e36" stroke="#2b1a10" stroke-width="3" />
+        <circle cx="105" cy="64" r="34" fill="#5eb846" stroke="#2b1a10" stroke-width="3" />
+        <circle cx="155" cy="66" r="32" fill="#4ea93b" stroke="#2b1a10" stroke-width="3" />
+        <circle cx="200" cy="76" r="28" fill="#5eb846" stroke="#2b1a10" stroke-width="3" />
+        <circle cx="82"  cy="82" r="24" fill="#6ac752" stroke="#2b1a10" stroke-width="2.5" />
+        <circle cx="132" cy="78" r="26" fill="#6ac752" stroke="#2b1a10" stroke-width="2.5" />
+        <circle cx="178" cy="82" r="24" fill="#55b23e" stroke="#2b1a10" stroke-width="2.5" />
+        <!-- Red & yellow flowers -->
+        <g stroke="#2b1a10" stroke-width="2">
+          <circle cx="64"  cy="66" r="7" fill="#ff4d4d" /><circle cx="64"  cy="66" r="2.5" fill="#ffd93d" />
+          <circle cx="102" cy="52" r="8" fill="#ffd93d" /><circle cx="102" cy="52" r="3"   fill="#e86a17" />
+          <circle cx="138" cy="70" r="7" fill="#ff4d4d" /><circle cx="138" cy="70" r="2.5" fill="#ffd93d" />
+          <circle cx="164" cy="54" r="7.5" fill="#ffd93d" /><circle cx="164" cy="54" r="2.5" fill="#e86a17" />
+          <circle cx="198" cy="68" r="7" fill="#ff4d4d" /><circle cx="198" cy="68" r="2.5" fill="#ffd93d" />
+        </g>
+        <!-- Low Luneta stone planter box -->
+        <rect x="22" y="92" width="216" height="48" rx="8" fill="#d9cfc1" stroke="#2b1a10" stroke-width="3" />
+        <rect x="16" y="86" width="228" height="14" rx="6" fill="#ede5d8" stroke="#2b1a10" stroke-width="3" />
+        <!-- Stone joints -->
+        <line x1="92"  y1="100" x2="92"  y2="140" stroke="#2b1a10" stroke-width="2.2" opacity="0.45" />
+        <line x1="168" y1="100" x2="168" y2="140" stroke="#2b1a10" stroke-width="2.2" opacity="0.45" />
+      </svg>
+
+      <!-- Two cute cartoon park pigeons on the bottom-center-left plaza -->
+      <svg class="luneta-pigeons" viewBox="0 0 190 95" aria-hidden="true">
+        <!-- Pigeon 1 (standing left, facing right) -->
+        <g transform="translate(8, 12)">
+          <ellipse cx="42" cy="74" rx="22" ry="5" fill="rgba(0,0,0,0.16)" />
+          <!-- Feet -->
+          <path d="M 36 62 L 34 73 M 34 73 L 28 74 M 34 73 L 39 74" stroke="#e86d24" stroke-width="3" stroke-linecap="round" fill="none" />
+          <path d="M 46 62 L 48 73 M 48 73 L 43 74 M 48 73 L 53 74" stroke="#e86d24" stroke-width="3" stroke-linecap="round" fill="none" />
+          <!-- Tail & Body -->
+          <path d="M 10 42 L 26 46 L 22 57 L 6 50 Z" fill="#8b97a6" stroke="#2b1a10" stroke-width="2.5" stroke-linejoin="round" />
+          <ellipse cx="40" cy="48" rx="20" ry="15" fill="#cfd8e3" stroke="#2b1a10" stroke-width="2.5" />
+          <!-- Wing -->
+          <path d="M 24 44 Q 40 38 52 50 Q 38 58 24 52 Z" fill="#9fb0c4" stroke="#2b1a10" stroke-width="2.2" />
+          <!-- Head & Beak -->
+          <circle cx="56" cy="28" r="11" fill="#dce4ee" stroke="#2b1a10" stroke-width="2.5" />
+          <path d="M 66 26 L 75 29 L 66 32 Z" fill="#f59e0b" stroke="#2b1a10" stroke-width="2" stroke-linejoin="round" />
+          <circle cx="59" cy="26" r="2.3" fill="#2b1a10" />
+          <circle cx="60" cy="25" r="0.8" fill="#fff" />
+        </g>
+
+        <!-- Pigeon 2 (pecking right, facing left) -->
+        <g transform="translate(105, 22)">
+          <ellipse cx="40" cy="64" rx="20" ry="4.5" fill="rgba(0,0,0,0.16)" />
+          <path d="M 34 54 L 32 63 M 32 63 L 27 64 M 32 63 L 37 64" stroke="#e86d24" stroke-width="2.8" stroke-linecap="round" fill="none" />
+          <path d="M 44 54 L 46 63 M 46 63 L 41 64 M 46 63 L 51 64" stroke="#e86d24" stroke-width="2.8" stroke-linecap="round" fill="none" />
+          <path d="M 70 36 L 56 40 L 60 50 L 74 44 Z" fill="#8b97a6" stroke="#2b1a10" stroke-width="2.5" stroke-linejoin="round" />
+          <ellipse cx="42" cy="42" rx="18" ry="13" fill="#c7d2e0" stroke="#2b1a10" stroke-width="2.5" />
+          <path d="M 55 38 Q 40 33 29 44 Q 42 50 54 45 Z" fill="#96a8bd" stroke="#2b1a10" stroke-width="2.2" />
+          <circle cx="24" cy="31" r="10" fill="#d8e1ec" stroke="#2b1a10" stroke-width="2.5" />
+          <path d="M 14 31 L 6 35 L 15 36 Z" fill="#f59e0b" stroke="#2b1a10" stroke-width="2" stroke-linejoin="round" />
+          <circle cx="21" cy="29" r="2.2" fill="#2b1a10" />
+          <circle cx="20" cy="28" r="0.8" fill="#fff" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- Module 2: Cartoon-outlined Sorbetes wooden/brass cone holder stand (apa rack) -->
+    <svg id="sorbetes-rack" class="vendor-container module-hidden" aria-hidden="true" preserveAspectRatio="none">
+      <!-- Side brass brackets -->
+      <rect id="rack-leg-l" x="0" y="0" rx="3" ry="3" fill="#e6b655" stroke="#2b1a10" stroke-width="2.5" />
+      <rect id="rack-leg-r" x="0" y="0" rx="3" ry="3" fill="#e6b655" stroke="#2b1a10" stroke-width="2.5" />
+      <!-- Upper tier -->
+      <rect id="rack-top-bar"  x="0" y="0" rx="6" ry="6" fill="#d98a3c" stroke="#2b1a10" stroke-width="2.5" />
+      <rect id="rack-top-trim" x="0" y="0" rx="3" ry="3" fill="#b56722" stroke="#2b1a10" stroke-width="2" />
+      <!-- Lower tier -->
+      <rect id="rack-bot-bar"  x="0" y="0" rx="6" ry="6" fill="#d98a3c" stroke="#2b1a10" stroke-width="2.5" />
+      <rect id="rack-bot-trim" x="0" y="0" rx="3" ry="3" fill="#b56722" stroke="#2b1a10" stroke-width="2" />
+      <!-- Dark recessed circular cone holes populated dynamically to match ICE_CREAM_SLOTS -->
+      <g id="rack-slots"></g>
+    </svg>
+
+    <!-- Module 3: Cartoon-outlined shallow Filipino rattan bilao basket -->
+    <svg id="buko-basket-back" class="vendor-container module-hidden" viewBox="0 0 400 120" preserveAspectRatio="none" aria-hidden="true">
+      <!-- Shallow back wall & interior tray of the bilao -->
+      <path d="M 12 46 Q 200 6 388 46 L 368 108 Q 200 118 32 108 Z" fill="#a66824" stroke="#2b1a10" stroke-width="4" stroke-linejoin="round" />
+      <ellipse cx="200" cy="48" rx="184" ry="32" fill="#824d16" stroke="#2b1a10" stroke-width="3.5" />
+      <!-- Braided back rattan rim -->
+      <path d="M 14 48 Q 200 12 386 48" fill="none" stroke="#d49546" stroke-width="8" stroke-linecap="round" />
+      <path d="M 14 48 Q 200 12 386 48" fill="none" stroke="#2b1a10" stroke-width="3" stroke-linecap="round" />
+    </svg>
+
+    <svg id="buko-basket-front" class="vendor-container module-hidden" viewBox="0 0 400 72" preserveAspectRatio="none" aria-hidden="true">
+      <!-- Shallow curved front rattan rim overlapping only the bottom edge of front-row bukos -->
+      <path d="M 12 12 Q 200 34 388 12 L 368 56 Q 200 70 32 56 Z" fill="#d49546" stroke="#2b1a10" stroke-width="4" stroke-linejoin="round" />
+      <path d="M 20 34 Q 200 54 380 34 L 368 56 Q 200 70 32 56 Z" fill="#a66824" opacity="0.65" />
+      <!-- Braided front top rim -->
+      <path d="M 12 12 Q 200 34 388 12" fill="none" stroke="#e9b263" stroke-width="6" stroke-linecap="round" />
+      <path d="M 12 12 Q 200 34 388 12" fill="none" stroke="#2b1a10" stroke-width="3" stroke-linecap="round" />
+      <!-- Subtle diagonal rattan weave lines -->
+      <g stroke="#2b1a10" stroke-width="2" opacity="0.55" stroke-linecap="round">
+        <line x1="48"  y1="20" x2="62"  y2="54" />
+        <line x1="88"  y1="24" x2="100" y2="59" />
+        <line x1="128" y1="27" x2="138" y2="62" />
+        <line x1="168" y1="29" x2="176" y2="64" />
+        <line x1="210" y1="29" x2="204" y2="64" />
+        <line x1="250" y1="28" x2="242" y2="63" />
+        <line x1="290" y1="26" x2="280" y2="60" />
+        <line x1="330" y1="22" x2="318" y2="56" />
+        <line x1="364" y1="17" x2="352" y2="50" />
+      </g>
+    </svg>
+
+    <!--
+      Non-Edible Items (scattered on the ground in Module 3).
+      ASSET: tire  -> assets/tire.jpg
+      ASSET: rock  -> assets/rock.jpg
+      ASSET: wood  -> assets/wood.jpg
+    -->
+    <img id="img-tire"   class="non-edible ne-tire-1" src="assets/tire.jpg" alt="A cartoon tire" draggable="false" data-type="non-edible" data-name="tire" />
+    <img id="img-tire-2" class="non-edible ne-tire-2" src="assets/tire.jpg" alt="A cartoon tire" draggable="false" data-type="non-edible" data-name="tire" />
+
+    <img id="img-rock"   class="non-edible ne-rock-1" src="assets/rock.jpg" alt="A cartoon rock" draggable="false" data-type="non-edible" data-name="rock" />
+    <img id="img-rock-2" class="non-edible ne-rock-2" src="assets/rock.jpg" alt="A cartoon rock" draggable="false" data-type="non-edible" data-name="rock" />
+    <img id="img-rock-3" class="non-edible ne-rock-3" src="assets/rock.jpg" alt="A cartoon rock" draggable="false" data-type="non-edible" data-name="rock" />
+
+    <img id="img-wood"   class="non-edible ne-wood-1" src="assets/wood.jpg" alt="Cartoon wooden logs" draggable="false" data-type="non-edible" data-name="wood" />
+    <img id="img-wood-2" class="non-edible ne-wood-2" src="assets/wood.jpg" alt="Cartoon wooden logs" draggable="false" data-type="non-edible" data-name="wood" />
+    <img id="img-wood-3" class="non-edible ne-wood-3" src="assets/wood.jpg" alt="Cartoon wooden logs" draggable="false" data-type="non-edible" data-name="wood" />
+
+    <!--
+      Bantay the Dog (drop zone).
+      Dog state images are swapped by game.js via ASSET_PATHS in game.js:
+        dog_thin     -> assets/puppy_sad.jpg       (0 items fed)
+        dog_medium   -> assets/puppy_mid.jpg        (1-49% of target)
+        dog_happy    -> assets/puppy_happy 1.jpg    (50-99% of target)
+        dog_muscular -> assets/puppy_muscular.jpg   (100% of target – fully fed)
+        dog_fat      -> assets/puppy_fat.jpg        (overfed > target)
+        dog_sick     -> assets/puppy_sick.jpg       (wrong item dropped)
+    -->
+    <div id="bantay-wrapper" role="region" aria-label="Bantay - drop zone">
+
+      <!-- Speech bubble above the dog -->
+      <div id="speech-bubble" aria-live="polite">
+        <button id="btn-speak" type="button" title="Hear Bantay" aria-label="Hear Bantay speak">&#128266;</button>
+        <span id="bubble-text">
+          Can you feed me <strong id="bubble-target">?</strong> mangoes?
+        </span>
+        <span id="bubble-count">0 / 0</span>
+      </div>
+
+      <span id="bantay-name">Bantay</span>
+
+      <img
+        id="img-bantay"
+        src="assets/puppy_sad.jpg"
+        alt="Bantay the dog"
+        draggable="false"
+      />
+
+      <!-- Food items Bantay has eaten. Tap one to take it back. -->
+      <div id="fed-tray" aria-label="Food fed to Bantay">
+        <span id="fed-hint">Tap to take one back</span>
+        <div id="fed-list"></div>
+      </div>
+
+      <!-- Student presses this when they think Bantay has the right amount -->
+      <button id="btn-done" aria-label="Done feeding Bantay">Done Feeding &#9989;</button>
+    </div>
+
+    <!-- Ghost image that follows the cursor during drag -->
+    <img id="drag-ghost" src="" alt="" draggable="false" />
+
+    <!-- Red flash overlay for wrong-drop feedback -->
+    <div id="wrong-flash"></div>
+
+    <!-- Overfed Overlay (shown when student presses Done with too many items) -->
+    <div id="overfed-overlay" role="dialog" aria-modal="true" aria-label="Too much food!">
+      <div id="overfed-card">
+        <img id="overfed-dog" src="assets/puppy_fat.jpg" alt="Bantay is too full!" draggable="false" />
+        <h2 id="overfed-title">😮 Oops! Too Much Food!</h2>
+        <p id="overfed-text">You fed Bantay <strong id="overfed-count">0</strong> items, but he only needed <strong id="overfed-target">0</strong>. That's too many! Try again.</p>
+        <button id="btn-overfed-retry">Try Again ↩</button>
+      </div>
+    </div>
+
+    <!-- Win Overlay -->
+    <div id="win-overlay" role="dialog" aria-modal="true" aria-label="You Win!">
+      <div id="win-card">
+        <h2 id="win-title">&#127881; Yay! Great Job! &#127881;</h2>
+        <p id="win-text">Bantay is so happy and full! &#128054;&#10084;&#65039;</p>
+        <div id="win-buttons">
+          <button id="btn-play-again">&#8635; Play Again</button>
+          <button id="btn-next-student">Next Student 👤</button>
+          <button id="btn-win-teacher" type="button">📊 Teacher Dashboard</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- TEACHER PIN (shown before the dashboard opens) -->
+  <div id="pin-overlay" class="t-overlay" hidden>
+    <form id="pin-form" class="t-card" autocomplete="off">
+      <h3>Teacher Access 🔒</h3>
+      <p>Enter the teacher PIN to open the dashboard.</p>
+      <input id="pin-input" type="password" inputmode="numeric" maxlength="8" aria-label="Teacher PIN" />
+      <span id="pin-error" role="alert"></span>
+      <div class="t-actions">
+        <button type="button" id="btn-pin-cancel" class="t-btn ghost">Cancel</button>
+        <button type="submit" class="t-btn">Open</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- TEACHER DASHBOARD (monitoring) -->
+  <div id="dashboard" role="dialog" aria-modal="true" aria-label="Teacher Dashboard" hidden>
+    <header id="dash-header">
+      <h2>📊 Teacher Dashboard <small>Results are saved in this device's browser</small></h2>
+      <div id="dash-controls">
+        <label class="dash-module-field" for="dash-module-select">
+          <span>Active Module</span>
+          <select id="dash-module-select" aria-label="Active Module"></select>
+        </label>
+        <select id="dash-period" aria-label="Time period">
+          <option value="today">Today</option>
+          <option value="7">Last 7 days</option>
+          <option value="all">All time</option>
+        </select>
+        <button id="btn-export" class="t-btn green" type="button">⬇ Export CSV</button>
+        <button id="btn-clear" class="t-btn danger" type="button">🗑 Clear Data</button>
+        <button id="btn-dash-close" class="t-btn ghost" type="button">✕ Close</button>
+      </div>
+    </header>
+
+    <div id="dash-body">
+      <section id="dash-summary" class="dash-cards" aria-label="Summary"></section>
+
+      <section class="dash-panel">
+        <h3>Class Progress by Module</h3>
+        <p id="dash-progress-note" class="dash-note"></p>
+        <div class="dash-table-wrap"><table id="dash-progress" class="dash-table"></table></div>
+        <p class="dash-legend">
+          ⭐ finished on the first try &nbsp;·&nbsp; ✅ finished &nbsp;·&nbsp; 🔄 played, not finished yet &nbsp;·&nbsp; — not played.
+          Numbers = rounds finished / rounds played. Tap a student to see their rounds.
+        </p>
+      </section>
+
+      <section class="dash-panel">
+        <h3>Student Performance</h3>
+        <div class="dash-table-wrap"><table id="dash-students" class="dash-table"></table></div>
+        <p class="dash-legend">
+          First-try accuracy = rounds where the first "Done Feeding" press had the right amount. Too few = "Done Feeding" pressed with fewer items than asked. Too many = "Done Feeding" pressed with more items than asked. Non-food = tire, rock or wood fed to Bantay.
+        </p>
+      </section>
+
+      <section id="dash-detail" class="dash-panel" hidden>
+        <div class="dash-panel-head">
+          <h3 id="dash-detail-title">Rounds</h3>
+          <div class="t-actions">
+            <button id="btn-delete-student" class="t-btn danger" type="button">🗑 Delete student</button>
+            <button id="btn-detail-close" class="t-btn ghost" type="button">✕ Close</button>
+          </div>
+        </div>
+        <div class="dash-table-wrap"><table id="dash-attempts" class="dash-table"></table></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Game logic loaded after DOM is ready -->
+  <script src="game.js"></script>
+  <!-- Teacher Dashboard (uses the student data saved by game.js) -->
+  <script src="dashboard.js"></script>
+
+</body>
+</html>
